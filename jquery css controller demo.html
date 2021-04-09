@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"></meta>
+  <title>jquery css controller</title>  
+  <style type="text/css">
+
+    *{
+    margin: 0;
+    padding: 0;
+    }
+    .controller{
+        background: rgb(53, 25, 13);
+        color:seashell;
+        padding: 8px;
+        text-decoration: none;
+        display: block;
+        width: 300px;      
+    }
+    .text{
+        width: 300px;
+        height: 200px;
+        background: sienna;
+        padding: 8px;             
+    }
+    .text.x{
+        display: none;
+    }
+    </style>
+
+</head>
+<body>
+    <a href="#" class="controller" >開/關</a>
+    <div class="text" >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia nihil accusantium sapiente quam, saepe rem est eos voluptatem fuga pariatur blanditiis quos nostrum magnam, dolorem repellendus porro qui cupiditate aliquam!</div>
+
+    <a href="#" class="controller" >開/關</a>
+    <div class="text" >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia nihil accusantium sapiente quam, saepe rem est eos voluptatem fuga pariatur blanditiis quos nostrum magnam, dolorem repellendus porro qui cupiditate aliquam!</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('.controller').click(function(){
+            $('.text').toggleClass('x');
+        })
+    })
+    </script>
+
+</body>
+</html>
