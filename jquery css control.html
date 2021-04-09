@@ -2,26 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8"></meta>
-  <title>jquery 蓋板廣告 隱藏手法</title>	
-  <script type="text/javascript"></script>
-    <style type="text/css">
+  <title>jquery css control</title>  
+  <style type="text/css">
 
-
- /* 
-       .box1{
-            width: 100px;height: 100px;background-color: blueviolet; display: inline-block;
-        }
-        .box2{
-            width: 100px;height: 100px;background-color:coral; display: inline-block;
-        }
-
-        .title{
-            background-color: rgb(49, 49, 59); color:darkgray;padding: 12px; cursor: pointer;
-        }
-        .content{
-            display: none;
-        }
-*/
 *{
     margin: 0;
     padding: 0;
@@ -34,6 +17,9 @@
     height: 100%;
     z-index: 10;
     background: rgba(0,0,0,.5); /* 透明度 */
+}
+.full-screen.x{
+    display: none;
 }
 .full-screen>.text{
     max-width: 500px;
@@ -62,7 +48,7 @@
 
 </head>
 <body>
-
+    <a href="#" class="btn-open">open</a>
 
     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, voluptate et voluptas dolorem sequi ipsa corporis asperiores quaerat soluta aut possimus, officia dolores eveniet minus dolorum vel eaque suscipit quam.</p>
     <p>Voluptate saepe eos dignissimos quidem! Odio repudiandae, exercitationem perferendis autem inventore sint amet quidem ipsam eligendi repellat laborum alias! Delectus ipsum nihil hic perspiciatis libero ducimus aut harum consectetur dolore.</p>
@@ -101,47 +87,21 @@
             Doloribus consequuntur odio voluptatem deserunt magni illum, 
             sed nisi animi incidunt harum hic iste velit officia 
             aspernatur molestias suscipit eaque quisquam iusto!
-            <a href="#" class="btn-close">x</a>
+            <a href="#" class="btn-close">X</a>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $(".btn-close").click(function(){
-                $(".full-screen").hide();
+            $('.btn-close').click(function(){
+                // $(".full-screen").hide();   隱藏蓋板廣告方法 1
+                $('.full-screen').addClass('x');   //隱藏蓋板廣告方法 2                
+            })
+            $('.btn-open').click(function(){
+                $('.full-screen').removeClass('x');
             })
         })
     </script>
 
-
-
-<!---
-    <div class="box1"></div>
-    <div class="box2"></div>
-
-    <div class="title">產品介紹</div>
-    <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Est dolorem nihil sapiente! Quod iste animi in maiores rem aliquid. Culpa 
-        quisquam sequi et tenetur aliquam accusamus error exercitationem beatae 
-        asperiores?</div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            //test1
-            $(".box1").dblclick(function(){  
-                $(".box2").toggle();
-            })
-
-            //test2
-            $(".title").click(function(){
-                $(".content").toggle();
-            })
-            
-        })
-
-    
-    </script>
--->
 </body>
 </html>
