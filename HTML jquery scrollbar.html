@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"></meta>
+  <title>jquery scrollbar</title>	
+  <script type="text/javascript"></script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 微軟正黑體;          
+        }
+        .finishloading .mask{
+            top: 100vh;
+        }
+        .finishloading .circle{
+            opacity: 0;
+        }
+        html ,body{
+            width: 100%;
+            height: 2400px;
+            background-color: #f4eee8;            
+        }
+        .page{
+            width: 100%;
+            height: 2400px;
+        }
+        .timer{
+            position:absolute;
+            top: 450px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color:#f8ede3;
+            font-size: 18px;
+        }
+        .mask{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color:#325288;
+            transition: 1s 0.3s;
+        }
+        .menu{
+            position: fixed;
+        }
+        #position1{
+            background-color: rgb(119, 218, 204);
+            width:100%;
+            height: 800px;
+        }
+        #position2{
+            background-color: royalblue;
+            width:100%;
+            height: 800px;
+        }
+        #position3{
+            background-color: orangered;
+            width:100%;
+            height: 800px; 
+        }
+        .circle{
+            position: absolute;
+            left: calc(50% - 30px);
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.5s; 
+        }
+        .circle:before, .circle:after{
+            content: "";
+            display: block;
+            border-radius: 100%;
+            width: 16px;
+            height: 16px;
+            z-index: 100;
+            position: absolute;            
+            top: 50%;            
+            background-color: rgb(233, 227, 227);            
+            transition: 0.5s;
+            animation: move 2s infinite linear;
+        }
+        .circle:before{
+            animation-delay: 0s;
+        }
+        .circle:after{
+            animation-delay: -1s;
+        }
+        @keyframes move{
+            0%{
+                left:  0px;
+                transform: scale(0.8);
+                opacity: 0.8;      
+            }
+            25%{
+                transform: scale(1); 
+                opacity: 1;
+            }
+            50%{ 
+                left: 50px;
+                transform: scale(1.5);   
+                opacity: 0.8;             
+            }
+            75%{
+                transform: scale(0.6);
+                opacity: 0.6;
+            }
+            100%{ 
+                left: 0px;               
+                transform: scale(0.8); 
+                opacity: 0.8;                
+            }
+        }
+        @-webkit-keyframes move{
+            0%{
+                left:  0px;
+                transform: scale(0.8);
+                opacity: 0.8;      
+            }
+            25%{
+                transform: scale(1); 
+                opacity: 1;
+            }
+            50%{ 
+                left: 50px;
+                transform: scale(1.5);   
+                opacity: 0.8;             
+            }
+            75%{
+                transform: scale(0.6);
+                opacity: 0.6;
+            }
+            100%{ 
+                left: 0px;               
+                transform: scale(0.8); 
+                opacity: 0.8;                
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="page loading ">
+        <div class="mask"></div>
+        <div class="circle"></div>
+        <div class="timer" id="timer">100</div>
+        <div class="menu">
+            <a href="#position1" class="move">position1</a>
+            <a href="#position2" class="move">position2</a>
+            <a href="#position3" class="move">position3</a>
+        </div>
+        <div id="position1"></div>
+        <div id="position2"></div>
+        <div id="position3"></div>
+    </div>
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    let timer;
+        window.onload=function(){
+            timer=document.getElementById("timer");
+            window.setTimeout(countdown, 20);
+        }
+        function countdown(){
+            timer.innerHTML=timer.innerHTML-1;
+            if(timer.innerHTML>0){
+                window.setTimeout(countdown, 20);                
+            }else{
+                $(document).ready(function(){
+                $(".page").addClass("finishloading");
+                });
+                $("#timer").fadeOut();
+            }
+        };
+
+    $("a.move").click(function(){
+        event.preventDefault();
+        let to = $(this).attr("href"); //用變數存取被點擊的連結,其attr的值        
+        $("body, html").animate({  //整個網頁都要做移動, 需用body, html
+            scrollTop: $(to).position().top
+        },1000);
+    })
+    </script>
+
+</body>
+</html>
